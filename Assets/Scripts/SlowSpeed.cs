@@ -8,4 +8,9 @@ public class SlowSpeedState : ICarState
     {
         car.Speed = 5f;
     }
+
+    public void Execute(Ambulancia Amb)
+    {
+        Amb.Speed = 5f;
+    }
 }

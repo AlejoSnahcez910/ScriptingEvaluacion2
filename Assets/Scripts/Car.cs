@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Car : MonoBehaviour
+public class Car : MonoBehaviour, ISound
 {
-    [SerializeField] private ButtonReader brSO = default;
+    [SerializeField] protected ButtonReader brSO = default;
     [SerializeField] private float speed;
-    
+    [SerializeField] protected float aceleracion = 10f;
     private ICarState icarState;
-    private IMovement imovement;
+    protected IMovement imovement;
 
     public float Speed { get => speed; set => speed = value; }
+    public float Aceleracion { get => aceleracion; set => aceleracion = value; }
 
     void Awake()
     {
@@ -21,21 +22,22 @@ public class Car : MonoBehaviour
         imovement = GetComponent<IMovement>();
     }
 
-    private void OnEnable()
+    public virtual void OnEnable()
     {
         brSO.greenEvent += Acelerate;
         brSO.redEvent += Stop;
         brSO.yellowEvent += SlowSpeed;
     }
-    private void OnDisable()
+    public virtual void OnDisable()
     {
         brSO.greenEvent -= Acelerate;
         brSO.redEvent -= Stop;
         brSO.yellowEvent -= SlowSpeed;
     }
-    private void Update()
+     public void Update()
     {
         imovement.Move(Speed);
+        PlaySound();
     }
 
     public void Acelerate()
@@ -55,4 +57,8 @@ public class Car : MonoBehaviour
         icarState.Execute(this);
     }
 
+    public virtual void PlaySound()
+    {
+        Debug.Log("Pi Pi");
+    }
 }

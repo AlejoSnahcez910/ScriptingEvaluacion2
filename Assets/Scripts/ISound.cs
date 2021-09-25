@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface ICarState 
+public interface ISound
 {
-    void Execute(Car car);
-   
+    void PlaySound();
 }
+
+

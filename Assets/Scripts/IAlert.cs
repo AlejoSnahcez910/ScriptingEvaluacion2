@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface ICarState 
+public interface IAlert 
 {
-    void Execute(Car car);
-   
+    void Alert();
 }

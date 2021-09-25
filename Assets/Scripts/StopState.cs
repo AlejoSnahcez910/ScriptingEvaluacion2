@@ -7,4 +7,9 @@ public class StopState : ICarState
     {
         car.Speed = 0f;
     }
+
+    public void Execute (Ambulancia Amb)
+    {
+        Amb.Speed = 0;
+    }
 }
